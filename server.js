@@ -57,7 +57,7 @@ app.post("/login", (req,res)=>{
     var sql = "SELECT * FROM database.accounts";
         
     db.query(sql, (err, result) => {
-        console.log(result);
+        console.log('hehe' + result);
     });
 
 app.listen (8800, () =>{

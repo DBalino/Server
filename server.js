@@ -6,6 +6,7 @@ const app = express ();
 app.use(cors())
 app.use(express.json());
 
+
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
@@ -14,15 +15,14 @@ const db = mysql.createPool({
 });
 
 app.post("/register", (req,res)=>{
-    const username = req.body.username;
+    const { username }= req.body.username;
     const fullname = req.body.fullname;
     const email = req.body.email;
     const password = req.body.password;
-
+    
   if (!username || !fullname || !email || !password) {
     return res.json({ success: false });
   }
-
 
   const sql = `INSERT INTO accounts (username, fullname, email, password) VALUES (?, ?, ?, ?)`;
   db.query(sql, [username, fullname, email, password], (err, result) => {
